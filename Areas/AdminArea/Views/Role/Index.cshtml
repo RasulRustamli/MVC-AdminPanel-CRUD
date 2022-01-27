@@ -1,0 +1,10 @@
+﻿@model IList<IdentityRole>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@foreach (var item in Model)
+{
+ @item.Name <a asp-controller="Role" asp-action="delete" asp-route-id="@item.Id" class="btn btn-warning">Delete Role</a>
+}

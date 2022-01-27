@@ -1,0 +1,51 @@
+﻿@model List<BasketProduct>
+@{
+    ViewData["Title"] = "ShowBasket";
+    double Total = 0;
+}
+
+<div class="container">
+    <div class="row">
+        @if (Model.Count != 0)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Count</th>
+                        <th>TotalPrice</th>
+                        <th scope="col">Settings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        double total = item.Price * item.Count;
+                        Total += total;
+                        <tr>
+                            <th scope="row">
+                                <img width="200px" height="200px" src="~/img/@item.ImageUrl" />
+                            </th>
+                            <td>@item.Name</td>
+                            <td>@item.Price</td>
+                            <td>@item.Count</td>
+                            <td>@total</td>
+                            <td><a asp-controller="basket" asp-action="Remove" asp-route-id="@item.Id">x</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        <p>TotalPrice: @Total</p>
+
+
+        }
+        else
+        {
+         <a asp-controller="home" asp-action="index">Go to Home</a>
+        }
+
+    </div>
+</div>
+

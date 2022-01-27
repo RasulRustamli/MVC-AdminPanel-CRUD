@@ -1,0 +1,17 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Remove";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            
+
+            <h5><p>Success delete</p>@Model.Name</h5>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Category" asp-action="Index" class="btn btn-warning">Go Back</a>
+        </div>
+    </div>
+</div>
+

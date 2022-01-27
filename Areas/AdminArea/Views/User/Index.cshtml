@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AppUser>
+@{ ViewData["Title"] = "Index"; }
+
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Basic Table</h4>
+            <p class="card-description">
+                <a class="btn btn-primary" asp-controller="User" asp-action="Create"> Create New User</a>
+            </p>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Settings</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                   @foreach (var item in Model)
+                    {
+                    @if (User.Identity.Name != item.UserName)
+                    {
+                    <tr>
+                        <td>@item.UserName</td>
+                        <td>@item.Email</td>
+                        <td>
+                            <a asp-controller="User" asp-action="Update" asp-route-id="@item.Id" class="btn btn-success"><i class="mdi mdi-table-edit"></i></a>
+                            <a asp-controller="User" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info"><i class="mdi mdi-account-card-details"></i></a>
+                            <a asp-controller="User" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="mdi mdi-account-remove"></i></a>
+                            <a asp-controller="Role" asp-action="update" asp-route-id="@item.Id" class="btn btn-warning">Update Role</a>
+                        </td>
+
+                        @if (item.IsActive)
+                        {
+                    <td>
+                        <a asp-controller="user" asp-action="IsActive" asp-route-id="@item.Id" class="btn btn-success">Active</a>
+                    </td> }
+                     else
+                    {
+                    <td>
+                        <a asp-controller="user" asp-action="IsActive" asp-route-id="@item.Id" class="btn btn-danger">Deactive</a>
+                    </td>
+                    }
+                    </tr>
+                     }                 
+                   }
+                    </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>

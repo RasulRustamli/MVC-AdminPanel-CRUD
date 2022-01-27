@@ -1,0 +1,272 @@
+﻿@model HomeVm
+@{
+    ViewData["Title"] = "Index";
+}
+
+<main>
+
+    <!-- SLIDER START -->
+
+    <section id="slider">
+        <div class="owl-carousel slider">
+            @foreach (var item in Model.Sliders)
+            {
+                <div> <img src="~/img/@item.ImageUrl" alt=""> </div>
+            }
+        </div>
+        <div class="container context pl-lg-5 ml-lg-3">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="text">
+                        <h1>@Html.Raw(Model.SliderDesc.Title)</h1>
+                        @*<h1>you mean it</h1>*@
+                        <p class="text-black-50 d-none d-sm-block">
+                           @Model.SliderDesc.Desc
+                        </p>
+                    </div>
+                    <div class="img">
+                        <img   src="~/img/@Model.SliderDesc.ImageUrl" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDER END -->
+    <!-- PRODUCTS START -->
+
+    <section id="products">
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col-12 d-flex justify-content-between">
+                    <ul class="category-mobile d-md-none list-unstyled">
+                        <li>
+                            <a href="" class="categories mr-2">Categories</a>
+                            <i class="fas fa-caret-down"></i>
+                            <ul class="category list-unstyled" style="display: none;">
+                                <li><a href="" data-id="all">All</a></li>
+                                @foreach (var item in Model.Categories)
+                                {
+                                    <li><a href="" data-id="@item.Name.ToLower()">@item.Name</a></li>
+                                }
+
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="category d-none d-md-flex list-unstyled">
+                        <li><a href="" data-id="all">All</a></li>
+                        @foreach (var item in Model.Categories)
+                        {
+                            <li><a href="" data-id="@item.Name.ToLower()">@item.Name</a></li>
+                        }
+                    </ul>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="" class="mr-2">Filter</a>
+                            <i class="fas fa-caret-down"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+               @await Component.InvokeAsync("Products",8);
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS END -->
+    <!-- ABOUT START -->
+
+    <section id="about">
+        <div class="container py-5">
+            <div class="row py-5">
+                <div class="col-lg-6">
+                    <div class="img">
+                        <a href="@Model.About.VideUrl"><img src="~/img/@Model.About.ImageUrl" class="img-fluid" alt=""></a>
+                        <div class="player position-absolute rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="fas fa-play fa-lg"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-text mt-5 mt-lg-0 px-lg-5">
+                        @Html.Raw(Model.About.Title)
+                        <p class="py-3">
+                          @Model.About.Description
+                        </p>
+                        <ul class="list-unstyled">
+                            <li class="mt-3">
+                                <img   src="~/img/h1-custom-icon.png" class="mr-2" alt=""> Hand picked just
+                                for you.
+                            </li>
+                            <li class="mt-3">
+                                <img   src="~/img/h1-custom-icon.png" class="mr-2" alt=""> Unique flower
+                                arrangements
+                            </li>
+                            <li class="mt-3">
+                                <img   src="~/img/h1-custom-icon.png" class="mr-2" alt=""> Best way to say
+                                you care.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT END -->
+    <!-- EXPERTS START -->
+
+    <section id="experts">
+        <div class="container">
+            <div class="row py-5">
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="section-title">
+                        <h1>Flower Experts</h1>
+                        <p class="text-black-50">
+                            A perfect blend of creativity, energy, communication, happiness and
+                            love. Let us arrange
+                            a smile for you.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row pb-5">
+                @foreach (var item in Model.Experts)
+                {
+                    <div class="col-md-6 col-lg-3">
+                        <div class="item text-center">
+                            <div class="img">
+                                <img src="~/img/@item.ImageUrl" class="img-fluid rounded-circle" alt="">
+                            </div>
+                            <div class="text mt-3">
+                                <h6>@item.Name</h6>
+                                <p class="text-black-50">@item.Duty</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3"></div>
+                <div class="col-lg-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERTS END -->
+    <!-- SUBSCRIBE START -->
+
+    <section id="subscribe" style=" background: url(../img/h3-background-img.jpg); background-attachment: fixed;">
+        <div class="container py-5">
+            <div class="row py-5">
+                <div class="col-12">
+                    <div class="content text-center py-5">
+                        <h3>Join The Colorful Bunch!</h3>
+                        <div class="form-group d-flex justify-content-center flex-wrap mt-5">
+                            <input type="email" placeholder="Email Address" class="form-control-lg rounded-0">
+                            <button class="btn btn-danger btn-lg rounded-0 px-5 mt-3 mt-sm-0">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SUBSCRIBE END -->
+    <!-- BLOG START -->
+
+    <section id="blog">
+        <div class="container">
+            <div class="row py-5">
+                <div class="offset-lg-3 col-lg-6">
+                    <div class="section-title">
+                        <h1>From our Blog</h1>
+                        <p class="text-black-50">
+                            A perfect blend of creativity, energy, communication, happiness and
+                            love. Let us arrange
+                            a smile for you.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row pb-5">
+              @foreach (var item in Model.Blogs)
+                {
+                <div class="col-md-6 col-lg-4">
+
+                    <div class="item">
+                        <div class="img position-relative">
+                            <img src="~/img/blog-feature-img-1.jpg" class="img-fluid" alt="">
+                            <div class="date rounded bg-light position-absolute py-1 px-2">
+                                <span>@item.DateTime</span>
+                            </div>
+                        </div>
+                        <div class="text mt-3 text-center px-5">
+                            <h5>@item.Name</h5>
+                            <p class="text-black-50">
+                                @item.Decription
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                        }    
+                </div>
+        </div>
+    </section>
+
+    <!-- BLOG END -->
+    <!-- SAY START -->
+
+    <section id="say">
+        <div class="container">
+            <div class="row py-5 justify-content-center">
+                <div class="col-md-8 col-xl-6">
+                    <div class="owl-carousel say">
+                        @foreach (var item in Model.BlogsSliders)
+                        {
+                            <div>
+                                <div class="item text-center">
+                                    <div class="img d-flex justify-content-center">
+                                        <img src="~/img/@item.ImageUrl" alt="">
+                                    </div>
+                                    <div class="text text-muted pt-3 pb-5">
+                                        <i>
+                                            @item.Decription
+                                        </i>
+                                    </div>
+                                    <div class="author">
+                                        <h6>@item.Name</h6>
+                                        <p class="text-black-50">@item.Duty</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SAY END -->
+    <!-- INSTAGRAM START -->
+
+    <section id="instagram">
+        <div class="owl-carousel instagram">
+            @foreach (var item in Model.InstagramSliders)
+            {
+                <div><img src="~/img/@item.ImageUrl" class="@item.IconName" alt=""></div>
+
+            }
+
+        </div>
+        <div class="hastag bg-light text-muted py-2 px-3">
+            #FIORELLO
+        </div>
+    </section>
+
+    <!-- INSTAGRAM END -->
+
+</main>
+

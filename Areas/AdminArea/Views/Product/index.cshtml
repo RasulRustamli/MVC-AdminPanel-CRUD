@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Product>
+
+
+<div class="col-lg-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Hoverable Table</h4>
+            <p class="card-description">
+                <a class="btn btn-primary" asp-controller="Product" asp-action="Create"> Create Product</a>
+            </p>
+            <table class="table table-hover">
+                
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Settings</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><img src="~/img/@item.ImageUrl" /></td>
+                            <td>@item.Name</td>
+                            <td>
+                                <a asp-controller="Product" asp-action="Update" asp-route-id="@item.Id" class="btn btn-success"><i class="mdi mdi-table-edit"></i>
+                                    
+                                </a>
+                            </td>
+                            <td>
+                                <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info"><i class="mdi mdi-account-card-details"></i>
+                                    
+                                </a>
+                            </td>
+                            <td>
+                                <a asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                                    <i class="mdi mdi-account-remove"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
